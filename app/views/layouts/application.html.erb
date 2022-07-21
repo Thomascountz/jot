@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Jot</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "https://unpkg.com/@highlightjs/cdn-assets@11.6.0/styles/base16/default-light.min.css" %>
+    <%= stylesheet_link_tag "application", "https://unpkg.com/easymde/dist/easymde.min.css" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <div class="container">
+      <%= render "partials/header" %>
+      <%= yield %>
+    </div>
+  </body>
+</html>
