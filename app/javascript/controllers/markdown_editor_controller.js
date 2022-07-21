@@ -4,7 +4,7 @@ import hljs from "highlight.js/lib/common";
 
 export default class extends Controller {
   connect() {
-    new EasyMDE({
+    const editor = new EasyMDE({
       element: this.element,
       minHeight: "100px",
       forceSync: true, // Turbo will cache the textarea and restore
@@ -14,6 +14,8 @@ export default class extends Controller {
         hljs: hljs, // Use the same highlight.js as renderer
       },
     });
+
+    editor.toggleSideBySide();
 
     // Prevent turbo from caching the editor which would lead to multiple instances on turbo:load
     document.querySelectorAll(".EasyMDEContainer").forEach((el) => {
