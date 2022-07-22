@@ -47,7 +47,7 @@ class CardsController < ApplicationController
   private
 
   def card_params
-    params.require(:card).permit(:body, :bookmark)
+    params.require(:card).permit(:body, :bookmark_url, :bookmark_name)
   end
 
   def is_author?

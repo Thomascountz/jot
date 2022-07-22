@@ -2,8 +2,9 @@
   <div class="col-12">
     <%= form_with model: card do |f| %>
       <%= f.text_area :body, data: { controller: "markdown-editor" } %>
+      <%= f.text_field :bookmark_name, placeholder: "Bookmark Name" %>
+      <%= f.url_field :bookmark_url, placeholder: "Bookmark URL" %>
       <input type="text" name="tags" placeholder="Tags" value="">
-      <%= f.text_field :bookmark, placeholder: "Bookmark URL" %>
       <%= f.submit %>
     <% end %>
   </div>

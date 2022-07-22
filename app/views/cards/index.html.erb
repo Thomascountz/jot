@@ -15,9 +15,13 @@
     </div>
 
     <div class="col-10">
-      <% if card.bookmark.present? %>
+      <% if card.bookmark_url.present? %>
         <div class="bookmark">
-          <%= link_to card.bookmark, card.bookmark, style: "margin-bottom: 1em; display: block; font-family: monospace; font-weight:600;font-size:1.2rem;" %>
+          <% if card.bookmark_name.present? %>
+            <%= link_to card.bookmark_name, card.bookmark_url, style: "margin-bottom: 1em; display: block; font-family: monospace; font-weight:600;font-size:1.2rem;" %>
+          <% else %>
+            <%= link_to card.bookmark_url, card.bookmark_url, style: "margin-bottom: 1em; display: block; font-family: monospace; font-weight:600;font-size:1.2rem;" %>
+          <% end %>
         </div>
       <% end %>
 
