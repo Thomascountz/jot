@@ -14,6 +14,8 @@
   text-transform: uppercase;
   font-size: 0.8rem;
   margin-top: 1rem;
+  font-family: monospace;
+  overflow-wrap: break-word;
 }
 
 .author-links {
