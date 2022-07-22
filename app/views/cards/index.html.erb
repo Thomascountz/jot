@@ -1,4 +1,4 @@
-<%= render 'cards/partials/search' %>
+<%= render 'cards/partials/search', query: @query %>
 <% @cards.each do |card| %>
   <%= render 'cards/partials/card', card: card %>
 <% end %>

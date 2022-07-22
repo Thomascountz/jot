@@ -2,7 +2,12 @@ class CardsController < ApplicationController
   http_basic_authenticate_with name: 'admin', password: 'hunter12', except: %i[index show]
 
   def index
-    @cards = Card.all.order(created_at: :desc)
+    @query = params[:query]
+    @cards = if @query.blank?
+               Card.all.order(created_at: :desc)
+             else
+               Card.search(params[:query])
+             end
   end
 
   def show
@@ -12,15 +17,19 @@ class CardsController < ApplicationController
   # Author only
 
   def author_index
-    @cards = Card.all.order(created_at: :desc)
     @is_author = true
+    @query = params[:query]
+    @cards = if @query.blank?
+               Card.all.order(created_at: :desc)
+             else
+               Card.search(params[:query])
+             end
     render :index
   end
 
   def author_show
-    @card = Card.find_by(slug: params[:slug])
     @is_author = true
-    render :show
+    @card = Card.find_by(slug: params[:slug])
   end
 
   def new

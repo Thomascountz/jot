@@ -2,6 +2,9 @@ class Card < ApplicationRecord
   validates_presence_of :body
   before_create :generate_slug
 
+  include PgSearch::Model
+  pg_search_scope :search, against: [:body]
+
   def to_param
     slug
   end
