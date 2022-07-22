@@ -14,6 +14,33 @@
  *= require_self
  */
 
+body {
+  --background: #ffffff;
+  --text-color: #333447;
+  --code-block-background-color: #ffffff;
+  --block-background-image: linear-gradient(120deg, #ebedee 0%, #fdfbfb 100%);
+  --block-border-color: #ebedee;
+  --block-border-bottom-color: #d3d3d3;
+  --block-img-background-color: #ffffff;
+  --input-border-color: #808080;
+  --input-background-color: #ffffff;
+  --button-background-image: linear-gradient(120deg, #ebedee 0%, #fdfbfb 100%);
+  background: var(--background);
+}
+
+.dark-mode {
+  --background: #121212;
+  --text-color: #ebebeb;
+  --code-block-background-color: #121212;
+  --block-background-image: linear-gradient(120deg, #191919 0%, #191919 100%);
+  --block-border-color: #191919;
+  --block-border-bottom-color: #a9a9a9;
+  --block-img-background-color: #121212;
+  --input-border-color: #808080;
+  --input-background-color: #121212;
+  --button-background-image: linear-gradient(120deg, #191919 0%, #191919 100%);
+}
+
 img {
   max-width: 100%;
 }

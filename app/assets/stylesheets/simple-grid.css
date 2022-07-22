@@ -20,7 +20,7 @@ body {
 /* ROOT FONT STYLES */
 
 * {
-  color: #333447;
+  color: var(--text-color);
 }
 
 /* TYPOGRAPHY */
