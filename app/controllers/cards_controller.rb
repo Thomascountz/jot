@@ -34,6 +34,7 @@ class CardsController < ApplicationController
   end
 
   def new
+    @is_author = true
     @card = Card.new
   end
 
@@ -47,6 +48,7 @@ class CardsController < ApplicationController
   end
 
   def edit
+    @is_author = true
     @card = Card.find_by(slug: params[:slug])
   end
 
