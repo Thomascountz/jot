@@ -3,5 +3,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root 'cards#index'
-  resources :cards, except: :show, path: :author
+  resources :cards, except: [:index, :show], path: :author
+  get '/author', to: 'cards#author_index', as: "author_index"
 end
