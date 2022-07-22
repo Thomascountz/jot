@@ -13,7 +13,8 @@ module CardsHelper
       tables: true,
       fenced_code_blocks: true,
       no_intra_emphasis: true,
-      escape_html: true
+      escape_html: true,
+      strikethrough: true
     )
     markdown.render(card.body)
   end

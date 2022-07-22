@@ -30,6 +30,7 @@ class CardsController < ApplicationController
   def author_show
     @is_author = true
     @card = Card.find_by(slug: params[:slug])
+    render :show
   end
 
   def new
