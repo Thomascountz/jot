@@ -1,10 +1,10 @@
 require 'redcarpet'
 module CardsHelper
-class CustomRender < Redcarpet::Render::HTML
-  def image(link, _title, alt_text) 
-    %(<a href="#{link}" target="_blank"><img src="#{link}" alt="#{alt_text}"></a>)
+  class CustomRender < Redcarpet::Render::HTML
+    def image(link, _title, alt_text)
+      %(<a href="#{link}" target="_blank"><img src="#{link}" alt="#{alt_text}"></a>)
+    end
   end
-end
 
   def card_body_html(card)
     markdown = Redcarpet::Markdown.new(
