@@ -10,16 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_22_173720) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_22_201725) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cards", force: :cascade do |t|
-    t.text "body"
+    t.text "body", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "bookmark_url"
     t.string "bookmark_name"
+    t.string "slug", null: false
+    t.index ["slug"], name: "index_cards_on_slug"
   end
 
 end
