@@ -1,5 +1,5 @@
 class Card < ApplicationRecord
-  validates_presence_of :body, :slug
+  validates_presence_of :body
   before_create :generate_slug
 
   def to_param
