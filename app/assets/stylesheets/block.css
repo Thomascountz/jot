@@ -10,6 +10,11 @@
   border-bottom: 15px solid var(--block-border-bottom-color);
 }
 
+.block .metadata {
+  border-bottom: 2px solid #808080;
+  padding-bottom: 1em;
+}
+
 .block .tags {
   text-transform: uppercase;
   font-size: 0.8rem;
