@@ -15,8 +15,6 @@ export default class extends Controller {
       },
     });
 
-    editor.toggleSideBySide();
-
     // Prevent turbo from caching the editor which would lead to multiple instances on turbo:load
     document.querySelectorAll(".EasyMDEContainer").forEach((el) => {
       el.setAttribute("data-turbo-cache", "false");
