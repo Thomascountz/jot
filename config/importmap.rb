@@ -22,3 +22,4 @@ pin 'fs', to: 'https://ga.jspm.io/npm:@jspm/core@2.0.0-beta.24/nodelibs/browser/
 pin 'marked', to: 'https://ga.jspm.io/npm:marked@4.0.18/lib/marked.cjs'
 pin 'typo-js', to: 'https://ga.jspm.io/npm:typo-js@1.2.1/typo.js'
 pin "highlight.js/lib/common", to: "https://ga.jspm.io/npm:highlight.js@11.6.0/es/common.js"
+pin "@yaireo/tagify", to: "https://ga.jspm.io/npm:@yaireo/tagify@4.14.0/dist/tagify.min.js"

@@ -6,10 +6,11 @@ export default class extends Controller {
   connect() {
     const editor = new EasyMDE({
       element: this.element,
-      autosave: {
-        enabled: true,
-        uniqueId: "markdown-editor",
-      },
+      // autosave is acting weird. Even when I submit the form, it persists
+      // autosave: {
+      //   enabled: true,
+      //   uniqueId: "markdown-editor",
+      // },
       minHeight: "250px",
       forceSync: true, // Turbo will cache the textarea and restore
       sideBySideFullscreen: false,

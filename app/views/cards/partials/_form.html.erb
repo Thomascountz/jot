@@ -4,7 +4,7 @@
       <%= f.text_area :body, data: { controller: "markdown-editor" } %>
       <%= f.text_field :bookmark_name, placeholder: "Bookmark Name" %>
       <%= f.url_field :bookmark_url, placeholder: "Bookmark URL" %>
-      <input type="text" name="tags" placeholder="Tags" value="">
+      <input type="text" name="tags" placeholder="Add Tags" data-controller="tag-selection">
       <%= f.submit class: "button" %>
     <% end %>
   </div>
