@@ -4,10 +4,13 @@ class CardsController < ApplicationController
 
   def index
     @query = params[:query]
-    @cards = if @query.blank?
-               Card.all.order(created_at: :desc)
+    @tag = params[:tag]
+    @cards = if @query.present?
+               Card.search(@query)
+             elsif @tag.present?
+               @cards = Card.tagged_with(@tag).order(created_at: :desc)
              else
-               Card.search(params[:query])
+               Card.all.order(created_at: :desc)
              end.limit(PER_PAGE).offset(paginate_offset)
     @final_page_no = (@cards.count / PER_PAGE)
   end
@@ -16,15 +19,27 @@ class CardsController < ApplicationController
     @card = Card.find_by(slug: params[:slug])
   end
 
+  def tag
+    @cards = Card.tagged_with(params[:tag])
+                 .order(created_at: :desc)
+                 .limit(PER_PAGE)
+                 .offset(paginate_offset)
+    @final_page_no = (@cards.count / PER_PAGE)
+    render :index
+  end
+
   # Author only
 
   def author_index
     @is_author = true
     @query = params[:query]
-    @cards = if @query.blank?
-               Card.all.order(created_at: :desc)
+    @tag = params[:tag]
+    @cards = if @query.present?
+               Card.search(@query)
+             elsif @tag.present?
+               @cards = Card.tagged_with(@tag).order(created_at: :desc)
              else
-               Card.search(params[:query])
+               Card.all.order(created_at: :desc)
              end.limit(PER_PAGE).offset(paginate_offset)
     @final_page_no = (@cards.count / PER_PAGE)
     render :index
@@ -34,6 +49,16 @@ class CardsController < ApplicationController
     @is_author = true
     @card = Card.find_by(slug: params[:slug])
     render :show
+  end
+
+  def author_tag
+    @is_author = true
+    @cards = Card.tagged_with(params[:tag])
+                 .order(created_at: :desc)
+                 .limit(PER_PAGE)
+                 .offset(paginate_offset)
+    @final_page_no = (@cards.count / PER_PAGE)
+    render :index
   end
 
   def new

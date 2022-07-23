@@ -1,10 +1,10 @@
-<div class="row">
+<div class="row pagination">
   <div class="col-12 right">
     <% if page_no > 1 %>
-      <%= link_to "Previous", root_path(query: @query, page: page_no - 1), style: "margin-right: 1em;" %>
+      <%= link_to "Previous", (is_author? ? author_index_path(query: @query, page: page_no - 1) : root_path(query: @query, page: page_no - 1)), style: "margin-right: 1em;" %>
     <% end %>
     <% if page_no <= final_page_no %>
-      <%= link_to "Next", root_path(query: @query, page: page_no + 1) %>
+      <%= link_to "Next", (is_author? ? author_index_path(query: @query, page: page_no + 1) : root_path(query: @query, page: page_no + 1)) %>
     <% end %>
   </div>
 </div>

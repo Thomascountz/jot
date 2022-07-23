@@ -1,4 +1,9 @@
-a.disabled {
+.pagination {
+  margin-top: 2em;
+  margin-bottom: 5em;
+}
+
+.pagination a.disabled {
   pointer-events: none;
   cursor: default;
   text-decoration: none;
