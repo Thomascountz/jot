@@ -1,4 +1,6 @@
 class Card < ApplicationRecord
+  has_many :taggables, dependent: :destroy
+  has_many :tags, through: :taggables
   validates_presence_of :body
   before_create :generate_slug
 

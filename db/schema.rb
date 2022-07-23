@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_22_201725) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_23_215418) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,4 +24,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_22_201725) do
     t.index ["slug"], name: "index_cards_on_slug"
   end
 
+  create_table "taggables", force: :cascade do |t|
+    t.bigint "card_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["card_id"], name: "index_taggables_on_card_id"
+    t.index ["tag_id"], name: "index_taggables_on_tag_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.text "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_tags_on_name", unique: true
+  end
+
+  add_foreign_key "taggables", "cards"
+  add_foreign_key "taggables", "tags"
 end

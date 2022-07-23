@@ -9,9 +9,9 @@
         <% end %>
       </div>
       <div class="tags">
-        <a href="">#space</a>
-        <a href="">#nasa</a>
-        <a href="">#jwst</a>
+        <% card.tags.each do |tag| %>
+          <%= link_to "##{tag.name.upcase}", "#"%>
+        <% end %>
       </div>
     </div>
   </div>

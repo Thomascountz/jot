@@ -42,11 +42,14 @@ class CardsController < ApplicationController
   end
 
   def create
-    @card = Card.new(card_params)
-    if @card.save
-      redirect_to author_index_path
-    else
-      render :new
+    ActiveRecord::Base.transaction do
+      @card = Card.new(card_params.except(:tags))
+      find_or_create_with_tags
+      if @card.save
+        redirect_to author_index_path
+      else
+        render :new
+      end
     end
   end
 
@@ -56,12 +59,15 @@ class CardsController < ApplicationController
   end
 
   def update
-    @card = Card.find_by(slug: params[:slug])
+    ActiveRecord::Base.transaction do
+      @card = Card.find_by(slug: params[:slug])
+      find_or_create_with_tags
 
-    if @card.update(card_params)
-      redirect_to author_card_path
-    else
-      render :edit, status: :unprocessable_entity
+      if @card.update(card_params.except(:tags))
+        redirect_to author_card_path
+      else
+        render :edit, status: :unprocessable_entity
+      end
     end
   end
 
@@ -76,7 +82,18 @@ class CardsController < ApplicationController
   helper_method :is_author?, :page_no, :final_page_no
 
   def card_params
-    params.require(:card).permit(:body, :bookmark_url, :bookmark_name)
+    params.require(:card).permit(:body, :bookmark_url, :bookmark_name, :tags)
+  end
+
+  def find_or_create_with_tags
+    @card.tags.destroy_all
+    user_tag_names = JSON.parse(card_params[:tags]).map do |tag|
+      Tag.normalize_name(tag['value'])
+    end
+    new_tags = user_tag_names - @card.tags.map(&:name)
+    new_tags.each do |tag|
+      @card.tags << Tag.find_or_initialize_by(name: tag)
+    end
   end
 
   def is_author?

@@ -18,4 +18,8 @@ module CardsHelper
     )
     markdown.render(card.body)
   end
+
+  def tag_values(card)
+    card.tags.map { |tag| { value: tag.name } }.to_json
+  end
 end
