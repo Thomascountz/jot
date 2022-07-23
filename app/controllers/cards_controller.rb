@@ -1,4 +1,5 @@
 class CardsController < ApplicationController
+  PER_PAGE = 8
   http_basic_authenticate_with name: 'admin', password: 'hunter12', except: %i[index show]
 
   def index
@@ -7,7 +8,8 @@ class CardsController < ApplicationController
                Card.all.order(created_at: :desc)
              else
                Card.search(params[:query])
-             end
+             end.limit(PER_PAGE).offset(paginate_offset)
+    @final_page_no = (@cards.count / PER_PAGE)
   end
 
   def show
@@ -23,7 +25,8 @@ class CardsController < ApplicationController
                Card.all.order(created_at: :desc)
              else
                Card.search(params[:query])
-             end
+             end.limit(PER_PAGE).offset(paginate_offset)
+    @final_page_no = (@cards.count / PER_PAGE)
     render :index
   end
 
@@ -70,6 +73,8 @@ class CardsController < ApplicationController
 
   private
 
+  helper_method :is_author?, :page_no, :final_page_no
+
   def card_params
     params.require(:card).permit(:body, :bookmark_url, :bookmark_name)
   end
@@ -78,5 +83,15 @@ class CardsController < ApplicationController
     @is_author
   end
 
-  helper_method :is_author?
+  def page_no
+    params[:page]&.to_i || 1
+  end
+
+  def paginate_offset
+    (page_no - 1) * PER_PAGE
+  end
+
+  def final_page_no
+    @final_page_no || 1
+  end
 end

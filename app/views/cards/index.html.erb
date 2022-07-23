@@ -2,3 +2,4 @@
 <% @cards.each do |card| %>
   <%= render 'cards/partials/card', card: card %>
 <% end %>
+<%= render 'cards/partials/pagination', page_no: page_no, query: @query %>
