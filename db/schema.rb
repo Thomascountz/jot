@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_23_215418) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_24_093514) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_23_215418) do
     t.string "bookmark_url"
     t.string "bookmark_name"
     t.string "slug", null: false
+    t.boolean "public", default: false
     t.index ["slug"], name: "index_cards_on_slug"
   end
 

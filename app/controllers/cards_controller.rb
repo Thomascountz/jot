@@ -6,17 +6,18 @@ class CardsController < ApplicationController
     @query = params[:query]
     @tag = params[:tag]
     @cards = if @query.present?
-               Card.search(@query)
+               Card.search(@query).where(public: true)
              elsif @tag.present?
-               @cards = Card.tagged_with(@tag).order(created_at: :desc)
+               @cards = Card.tagged_with(@tag).order(created_at: :desc).where(public: true)
              else
-               Card.all.order(created_at: :desc)
+               Card.all.order(created_at: :desc).where(public: true)
              end.limit(PER_PAGE).offset(paginate_offset)
     @final_page_no = (@cards.count / PER_PAGE)
   end
 
   def show
-    @card = Card.find_by(slug: params[:slug])
+    @card = Card.find_by(slug: params[:slug], public: true)
+    render body: nil, status: :not_found unless @card
   end
 
   def tag
@@ -107,7 +108,7 @@ class CardsController < ApplicationController
   helper_method :is_author?, :page_no, :final_page_no
 
   def card_params
-    params.require(:card).permit(:body, :bookmark_url, :bookmark_name, :tags)
+    params.require(:card).permit(:body, :bookmark_url, :bookmark_name, :public, :tags)
   end
 
   def find_or_create_with_tags

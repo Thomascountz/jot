@@ -15,15 +15,45 @@ form > input:focus {
   outline:none!important;
 }
 
-.button {
+form > .button {
   background-image: var(--button-background-image);
   border: 1px solid #ebedee;
 }
 
-.tagify {
+form > .button:hover {
+  cursor: pointer;
+}
+
+form > .tagify {
   border-radius: 6px;
   border: 1px solid var(--input-border-color);
   width: 100%;
   margin-top: 1em;
   font-family: monospace;
+}
+
+form > .public {
+  margin-top: 1em;
+  border-radius: 6px;
+  border: 1px solid var(--input-border-color);
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1em;
+  padding: .5em .8em;
+  display: flex;
+  align-items: center;
+}
+
+form > .public:hover {
+  cursor: pointer;
+}
+
+form > .checked {
+  background: #f0f8ff; 
+}
+
+form > .public > input {
+  margin-left: auto;
+  order: 2;
+  pointer-events: none;
 }

@@ -5,6 +5,10 @@
       <%= f.text_field :bookmark_name, placeholder: "Bookmark Name" %>
       <%= f.url_field :bookmark_url, placeholder: "Bookmark URL" %>
       <%= f.text_field :tags, value: tag_values(card), placeholder: "Add Tags", data: { controller: "tag-selection", "turbo-cache" => false } %>
+      <div class="public", data-controller="public-checkbox", data-action="click->public-checkbox#togglePublic" >
+        <%= f.label :public, "Public?" %>
+        <%= f.check_box :public, checked: card.public?, data: { "public-checkbox-target" => "toggle" }  %>
+      </div>
       <%= f.submit class: "button" %>
     <% end %>
   </div>
