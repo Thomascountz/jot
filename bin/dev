@@ -1,0 +1,1 @@
+AUTH_USER=admin AUTH_PASS=hunter12 ./bin/rails server
