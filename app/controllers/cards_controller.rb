@@ -113,12 +113,13 @@ class CardsController < ApplicationController
 
   def find_or_create_with_tags
     @card.tags.destroy_all
-    user_tag_names = JSON.parse(card_params[:tags]).map do |tag|
-      Tag.normalize_name(tag['value'])
-    end
-    new_tags = user_tag_names - @card.tags.map(&:name)
-    new_tags.each do |tag|
-      @card.tags << Tag.find_or_initialize_by(name: tag)
+    tag_params = card_params[:tags]
+
+    return if tag_params.blank?
+
+    JSON.parse(tag_params).each do |tag|
+      name = Tag.normalize_name(tag['value'])
+      @card.tags << Tag.find_or_initialize_by(name:)
     end
   end
 

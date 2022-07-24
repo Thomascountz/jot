@@ -21,10 +21,10 @@
 }
 
 .block .tags {
-  font-size: 0.8rem;
+  /* font-size: 0.8rem; */
   margin-top: 1rem;
   font-family: monospace;
-  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .block .author-links {
