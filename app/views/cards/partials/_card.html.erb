@@ -1,4 +1,4 @@
-<div class="row block">
+<div class="row block <%= "private" if !card.public? %>">
   <div class="col-2">
     <div class="metadata">
       <div class="created-at">
@@ -14,11 +14,9 @@
         <% end %>
       </div>
       <% if is_author? %>
-        <div class="public">
-          <% if card.public? %>
-            <%= content_tag(:p, "public", class: "true center" ) %>
-          <% else %>
-            <%= content_tag(:p, "private", class: "false center" ) %>
+        <div class="private">
+          <% if !card.public? %>
+            <%= content_tag(:p, "PRIVATE") %>
           <% end %>
         </div>
       <% end %>
@@ -26,19 +24,15 @@
   </div>
 
   <div class="col-10">
-    <% if card.bookmark_url.present? %>
-      <div class="bookmark">
-        <% if card.bookmark_name.present? %>
-          <%= link_to card.bookmark_name, card.bookmark_url, style: "margin-bottom: 1em; display: block; font-family: monospace; font-weight:600;font-size:1.2rem;" %>
-        <% else %>
-          <%= link_to card.bookmark_url, card.bookmark_url, style: "margin-bottom: 1em; display: block; font-family: monospace; font-weight:600;font-size:1.2rem;" %>
-        <% end %>
-      </div>
-    <% end %>
-
     <div class="content" data-controller="highlight">
       <%= card_body_html(card).html_safe %>
     </div>
+
+    <% if card.bookmark_url.present? %>
+      <div class="bookmark">
+        <%= link_to (card.bookmark_name.presence || card.bookmark_url), card.bookmark_url %>
+      </div>
+    <% end %>
 
     <% if is_author? %>
       <div class="author-links right">
