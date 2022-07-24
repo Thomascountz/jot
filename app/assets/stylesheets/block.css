@@ -36,3 +36,20 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+.block .public {
+  margin-top: 1em;
+  font-weight: 800;
+}
+
+.block .public > .true {
+  background: #6495ed;
+  border-radius: 6px;
+  margin-bottom: 0;
+}
+
+.block .public > .false {
+  background: #daa520;
+  border-radius: 6px;
+  margin-bottom: 0;
+}
