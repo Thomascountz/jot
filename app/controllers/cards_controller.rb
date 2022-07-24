@@ -1,6 +1,6 @@
 class CardsController < ApplicationController
   PER_PAGE = 8
-  http_basic_authenticate_with name: 'admin', password: 'hunter12', except: %i[index show]
+  http_basic_authenticate_with name: ENV.fetch('AUTH_USER'), password: ENV.fetch('AUTH_PASS'), except: %i[index show]
 
   def index
     @query = params[:query]
