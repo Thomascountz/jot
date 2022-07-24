@@ -11,6 +11,7 @@ export default class extends Controller {
       //   enabled: true,
       //   uniqueId: "markdown-editor",
       // },
+      toolbar: ["bold", "italic", "heading", "strikethrough", "|", "quote", "unordered-list", "ordered-list", "|", "preview", "side-by-side", "fullscreen"],
       minHeight: "250px",
       forceSync: true, // Turbo will cache the textarea and restore
       sideBySideFullscreen: false,
