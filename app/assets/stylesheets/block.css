@@ -7,7 +7,7 @@
   display: block;
   border: 2px solid var(--block-border-color);
   box-sizing: border-box;
-  border-bottom: 15px solid var(--block-border-bottom-color);
+  border-bottom: 15px solid var(--block-border-color);
 }
 
 .block.private {

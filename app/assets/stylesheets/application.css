@@ -19,8 +19,7 @@ body {
   --text-color: #333447;
   --code-block-background-color: #ffffff;
   --block-background-image: linear-gradient(120deg, #ebedee 0%, #fdfbfb 100%);
-  --block-border-color: #ebedee;
-  --block-border-bottom-color: #d3d3d3;
+  --block-border-color: #d3d3d3;
   --block-img-background-color: #ffffff;
   --input-border-color: #808080;
   --input-background-color: #ffffff;
