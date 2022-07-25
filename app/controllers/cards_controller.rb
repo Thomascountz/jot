@@ -12,7 +12,6 @@ class CardsController < ApplicationController
              else
                Card.all.order(created_at: :desc).where(public: true)
              end.limit(PER_PAGE).offset(paginate_offset)
-    @final_page_no = (@cards.count / PER_PAGE)
   end
 
   def show
@@ -25,7 +24,6 @@ class CardsController < ApplicationController
                  .order(created_at: :desc)
                  .limit(PER_PAGE)
                  .offset(paginate_offset)
-    @final_page_no = (@cards.count / PER_PAGE)
     render :index
   end
 
@@ -42,7 +40,6 @@ class CardsController < ApplicationController
              else
                Card.all.order(created_at: :desc)
              end.limit(PER_PAGE).offset(paginate_offset)
-    @final_page_no = (@cards.count / PER_PAGE)
     render :index
   end
 
@@ -58,7 +55,6 @@ class CardsController < ApplicationController
                  .order(created_at: :desc)
                  .limit(PER_PAGE)
                  .offset(paginate_offset)
-    @final_page_no = (@cards.count / PER_PAGE)
     render :index
   end
 
@@ -135,7 +131,11 @@ class CardsController < ApplicationController
     (page_no - 1) * PER_PAGE
   end
 
-  def final_page_no
-    @final_page_no || 1
+  def final_page_no(is_author)
+    if is_author
+      (Card.count / PER_PAGE.to_f).ceil
+    else
+      (Card.where(public: true).count / PER_PAGE.to_f).ceil
+    end
   end
 end

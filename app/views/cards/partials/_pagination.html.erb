@@ -3,7 +3,7 @@
     <% if page_no > 1 %>
       <%= link_to "Previous", (is_author? ? author_index_path(query: @query, page: page_no - 1) : root_path(query: @query, page: page_no - 1)), style: "margin-right: 1em;" %>
     <% end %>
-    <% if page_no <= final_page_no %>
+    <% if page_no < final_page_no(is_author?) %>
       <%= link_to "Next", (is_author? ? author_index_path(query: @query, page: page_no + 1) : root_path(query: @query, page: page_no + 1)) %>
     <% end %>
   </div>
